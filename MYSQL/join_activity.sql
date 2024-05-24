@@ -63,6 +63,16 @@ JOIN
 WHERE s.salary > (SELECT AVG(salary)FROM salaries WHERE salaries.emp_no = e.emp_no);
     
 -- List each employee along with the number of titles they have held
+SELECT 
+	e.emp_no,
+    e.first_name,
+    e.last_name,
+    (SELECT COUNT(t.title) 
+    FROM titles t
+    WHERE t.emp_no = e.emp_no
+    ORDER BY e.emp_no) as num_titles
+FROM
+	employees e;
 -- Retrieve a list of employees who are currently in a specific department
 
 	
